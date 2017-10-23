@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Add a new Book</h1>
+  <form [formGroup]="addForm" (ngSubmit)="add()">
+    <div class="form-group">
+      <label for="email">Title:</label>
+      <input type="text" class="form-control" id="email" [formControl]="titleControl">
+      <div class="input-error" *ngIf="titleControl.hasError('minlength') && titleControl.touched && !titleControl.hasError('required')">The length must be 7 at least.</div>
+      <div class="input-error" *ngIf="titleControl.hasError('required') && titleControl.touched">This field is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Author:</label>
+      <input type="text" class="form-control" id="password" [formControl]="authorControl">
+      <div class="input-error" *ngIf="authorControl.hasError('minlength') && authorControl.touched && !authorControl.hasError('required')">The length must be 3 at least.</div>
+      <div class="input-error" *ngIf="authorControl.hasError('required') && authorControl.touched">This field is required.</div>
+    </div>
+
+    <a routerLink="/booklist"><button type="button" class="btn btn-default ">Back</button></a>
+    <button type="submit" class="btn btn-success float-right" [disabled]="!addForm.valid">Add</button>
+
+  </form>
+</div>
